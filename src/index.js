@@ -7,8 +7,7 @@ function showTab(n) {
     // This function will display the specified tab of the form ...
     let x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
-    console.log(x[n].id)
-    if (x[n].id == "summary") {
+    if (x[n].id === "summary") {
         for (let i = 0; i < 6; i++) {
             x[n].appendChild(document.createTextNode("\n" + answers[i]))
         }
@@ -82,7 +81,18 @@ function fixStepIndicator(n) {
     let i, x = document.getElementsByClassName("step");
     for (i = 0; i < x.length; i++) {
         x[i].className = x[i].className.replace(" steps-ongoing steps-selected", "");
+        for (let node of x[i].childNodes) {
+            if (i !== n) {
+                if (node.className === 'steps-sub-title') node.style.display = "none"
+            }
+        }
     }
     //... and adds the "active" class to the current step:
     x[n].className += " steps-ongoing steps-selected";
+    // hides steps-sub-title from non-active tabs
+    for (let node of x[n].childNodes) {
+        if (node.className === 'steps-sub-title' && node.style.display === 'none') {
+            node.style.display = ""
+        }
+    }
 }
