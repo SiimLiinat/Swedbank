@@ -8,8 +8,9 @@ function showTab(n) {
     let x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
     if (x[n].id === "summary") {
-        for (let i = 0; i < 6; i++) {
-            x[n].appendChild(document.createTextNode("\n" + answers[i]))
+        for (let i = 0; i < 5; i++) {
+            const answer = document.getElementById("answer" + (i + 1));
+            answer.innerText = answers[i];
         }
     }
     // ... and fix the Previous/Next buttons:
@@ -18,20 +19,21 @@ function showTab(n) {
     } else {
         document.getElementById("prevBtn").style.display = "inline";
     }
+    console.log(x.length, n)
     if (n === x.length - 1) {
         document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
         document.getElementById("nextBtn").innerHTML = "Next";
     }
     // ... and run a function that displays the correct step indicator:
-    fixStepIndicator(n)
+    if (currentTab !== 5) fixStepIndicator(n)
 }
 
 function nextPrev(n) {
     // This function will figure out which tab to display
     let x = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
-    if (n === 1 && !validateForm()) return false;
+    if (currentTab !== 5) if (n === 1 && !validateForm()) return false;
     // Hide the current tab:
     x[currentTab].style.display = "none";
     // Increase or decrease the current tab by 1:
@@ -40,7 +42,7 @@ function nextPrev(n) {
     // if you have reached the end of the form... :
     if (currentTab >= x.length) {
         //...the form gets submitted:
-        document.getElementById("regForm").submit();
+        submitForm()
         return false;
     }
     // Otherwise, display the correct tab:
@@ -92,7 +94,17 @@ function fixStepIndicator(n) {
     // hides steps-sub-title from non-active tabs
     for (let node of x[n].childNodes) {
         if (node.className === 'steps-sub-title' && node.style.display === 'none') {
-            node.style.display = ""
+            node.style.display = "inline"
         }
     }
+}
+
+function submitForm() {
+    console.log("yes")
+    const form = document.getElementById("regForm");
+    console.log(form)
+    form.style.display = "none";
+    const submissionPage = document.getElementById("form-success");
+    submissionPage.style.display = "";
+    return false;
 }

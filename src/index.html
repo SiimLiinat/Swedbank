@@ -48,11 +48,6 @@ Textarea: Additional comments/information?
                         Step five
                         <div class="steps-sub-title">Additional info</div>
                     </li>
-                    <li class="step">
-                        <div class="steps-number">6</div>
-                        Summary
-                        <div class="steps-sub-title"></div>
-                    </li>
                 </ol>
                 <div class="steps-responsive">
                     <div class="steps-responsive-text">Step 2</div>
@@ -92,6 +87,16 @@ Textarea: Additional comments/information?
             <!--TODO: Should be on a separate tab not visible in tabs menu.-->
             <div id="summary" class="tab">
                 <legend><span class="h2">Summary</span></legend>
+                <legend><span class="h4">Question 1:</span></legend>
+                <legend><span id="answer1" class="h5">Answer 1</span></legend>
+                <legend><span class="h4">Question 2:</span></legend>
+                <legend><span id="answer2" class="h5">Answer 2</span></legend>
+                <legend><span class="h4">Question 3:</span></legend>
+                <legend><span id="answer3" class="h5">Answer 3</span></legend>
+                <legend><span class="h4">Question 4:</span></legend>
+                <legend><span id="answer4" class="h5">Answer 4</span></legend>
+                <legend><span class="h4">Question 5:</span></legend>
+                <legend><span id="answer5" class="h5">Answer 5</span></legend>
             </div>
             <div style="overflow:auto;">
                 <div style="float:right;">
@@ -101,92 +106,12 @@ Textarea: Additional comments/information?
                 </div>
             </div>
         </form>
-    </fieldset>
-</div>
-
-<!--TODO: Lõpuleht; see, et on edukalt täidetud. -->
-<div hidden id="form-success" class="tab align-content-center mx-auto" style="">
-    <i class="material-icons material-icons">check</i>
-    <legend><span class="h2">Application submitted.</span></legend>
-</div>
-
-<!--<div class="container-fluid center bg-variant-1">
-    <form class="bg-white p-4" style="border-radius: 10px">
-        <div class="steps">
-            <ol>
-                <li class="steps-completed">
-                    <div class="material-icons steps-icon">check</div>
-                    Step one
-                    <div class="steps-sub-title">Authentication</div>
-                </li>
-                <li class="steps-ongoing steps-selected">
-                    <div class="steps-number">2</div>
-                    Step two
-                </li>
-                <li>
-                    <div class="steps-number">3</div>
-                    Step three
-                </li>
-                <li>
-                    <div class="steps-number">4</div>
-                    Step four
-                </li>
-                <li>
-                    <div class="steps-number">5</div>
-                    Step five
-                </li>
-            </ol>
-            <div class="steps-responsive">
-                <div class="steps-responsive-text">Step 2</div>
-            </div>
+        <div id="form-success" class="bg-white p-4 align-content-center mx-auto" style="display: none">
+            <i class="material-icons material-icons">check</i>
+            <legend><span class="h2">Application submitted.</span></legend>
+            <legend><span class="h6">You can close the tab.</span></legend>
         </div>
-        <fieldset>
-            <legend><span class="h2">Step two</span></legend>
-            <div class="row mb-4">
-                <div class="form-groupcol-12 col-sm-6">
-                    <label for="multi-form-example-1">
-                        Label
-                    </label>
-                    <input type="text" class="form-control" id="multi-form-example-1" value>
-                </div>
-                <div class="form-groupcol-12 col-sm-6">
-                    <label for="multi-form-example-2">
-                        Label
-                    </label>
-                    <input type="text" class="form-control" id="multi-form-example-2" value>
-                </div>
-            </div>
-            <div class="form-groupmb-4">
-                <label for="multi-form-example-3">
-                    Label
-                </label>
-                <input type="text" class="form-control" id="multi-form-example-3" value>
-            </div>
-            <fieldset class="radio-group mb-4">
-                <legend>Input label
-                </legend>
-                <div class="radio">
-                    <input type="radio" id="options-1" name="multi-step-radio-example" checked>
-                    <label for="options-1">Option 1</label>
-                </div>
-                <div class="radio">
-                    <input type="radio" id="options-2" name="multi-step-radio-example">
-                    <label for="options-2">Option 2</label>
-                </div>
-                <div class="radio">
-                    <input type="radio" id="options-3" name="multi-step-radio-example">
-                    <label for="options-3">Option 3</label>
-                </div>
-            </fieldset>
-            <div class="d-flex justify-content-between mt-2">
-                <button class="btn btn-secondary" type="button">
-                    <i class="material-icons" aria-hidden="true">arrow_back</i>
-                    <span>Back</span>
-                </button>
-                <button class="btn btn-primary" type="button">Next step</button>
-            </div>
-        </fieldset>
-    </form>
+    </fieldset>
 </div>
 <script src="https://design.swedbankpay.com/v/7.1.0/scripts/dg.js" global="true" autoload="true"></script>-->
 <script src="./index.js" type="application/javascript"></script>
