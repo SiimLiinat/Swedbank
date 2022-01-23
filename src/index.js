@@ -19,7 +19,6 @@ function showTab(n) {
     } else {
         document.getElementById("prevBtn").style.display = "inline";
     }
-    console.log(x.length, n)
     if (n === x.length - 1) {
         document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
@@ -53,20 +52,36 @@ function validateForm() {
     // This function deals with validation of the form fields
     let x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
+    y = x[currentTab].querySelectorAll("input, textarea, select");
     // A loop that checks every input field in the current tab:
-    let answer = ""
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        answer += " " + y[i].value;
-        if (y[i].value === "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false:
-            valid = false;
+    // TODO: Should collecting answers be a separate thing at the end? Since the answers are always there, just hidden.
+    let answer = "";
+    if (y[0].type === "checkbox") {
+        let value = y[0].checked;
+        if (!value) valid = false;
+        else answer = "True";
+    } else if (y[0].type === "radio") {
+        valid = false;
+        y.forEach(radio => {
+            if (radio.checked) {
+                answer = radio.value;
+                valid = true;
+            }
+        });
+    } else if (y[0].tagName.toLowerCase() === "select") {
+        answer = y[0].value;
+    }
+    else {
+        for (i = 0; i < y.length; i++) {
+            // If a field is empty...
+            answer = y[i].value;
+            if (y[i].value === "") {
+                // add an "invalid" class to the field:
+                y[i].className += " invalid";
+                valid = false;
+            }
         }
     }
-    answers[currentTab] = answer.trim();
     // If the valid status is true, mark the step as finished and valid:
     if (valid) {
         let step = document.getElementsByClassName("step")[currentTab];
@@ -74,6 +89,7 @@ function validateForm() {
         let stepToComplete = step.childNodes[1];
         stepToComplete.className = "material-icons steps-icon";
         stepToComplete.innerHTML = "check";
+        answers[currentTab] = answer.trim();
     }
     return valid; // return the valid status
 }
@@ -100,11 +116,16 @@ function fixStepIndicator(n) {
 }
 
 function submitForm() {
-    console.log("yes")
     const form = document.getElementById("regForm");
-    console.log(form)
     form.style.display = "none";
     const submissionPage = document.getElementById("form-success");
     submissionPage.style.display = "";
     return false;
+}
+
+function initForm() {
+    const submissionPage = document.getElementById("intro");
+    submissionPage.style.display = "none";
+    const fieldSet = document.getElementById("fieldset");
+    fieldSet.style.display = "";
 }

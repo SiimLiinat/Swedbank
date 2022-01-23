@@ -21,7 +21,7 @@ input {
 }
 
 /* Mark input boxes that gets an error on validation: */
-input.invalid {
+.invalid {
   background-color: #ffdddd;
 }
 
@@ -36,4 +36,8 @@ input.invalid {
 
 .steps {
   min-width: 30em;
+}
+
+label {
+  display: block;
 }
