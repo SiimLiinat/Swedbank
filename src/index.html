@@ -4,137 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Credit card</title>
-    <link rel="stylesheet" href="https://design.swedbankpay.com/v/7.1.0/styles/swedbankpay.css"/>
+    <!--<link rel="stylesheet" href="https://design.swedbankpay.com/v/7.1.0/styles/swedbankpay.css"/>-->
     <link rel="stylesheet" href="css/stylesheet.css"/>
+    <link rel="stylesheet" href="css/swedbankpay.css"/>
 </head>
 
-<!--TODO:
-Nimi (ees- ja perekonnanimi)
-Radio button: country or like a credit card type? Või see maksekohustuse asi?
-Checkbox: read the TOS?
-Drop-down box: Country?
-Textarea: Something mandatory, if I do a loan, maybe the reason for asking it?
--->
-<!--TODO: Intro-->
-<!--TODO: Tooltip (at least once)-->
 <!--TODO: Error messages-->
+
+<!--TODO: Car Lease
+TODO: Input: Representative Name/Price
+TODO: Radio button: Purpose of financing
+TODO: Textarea: Car details: Make/model/year of release/Price etc
+TODO: Checkbox: Casco insurance/Third party liability insurance
+TODO: Drop-down box: Type of lease
+-->
+
+<!--TODO: Change button style-->
+<!--TODO: Remove steps if going backwards and changing stuff to invalid-->
 
 <body class="bg-variant-1">
 <div class="container-fluid center">
-    <div id="intro" class="bg-white p-4 align-content-center mx-auto mw-100" style="border-radius: 10px; min-height: 25%; min-width: 25%">
-        <legend><span class="h2 ml-4">Credit Card Application</span></legend>
-        <legend><span class="h5">Press the button to start the application process.</span></legend>
-        <div style="float: right">
-            <button class="btn btn-primary" type="button" id="initForm" onclick="initForm()">Start</button>
+    <div id="intro">
+        <h1 class="card-header">Car Lease</h1>
+        <div class="bg-white p-2-0 bg-white align-content-center mx-auto mw-100" style="border-radius: 10px;">
+            <h1 id="title">What business requires, car lease delivers!</h1>
+            <div class="my-4 bold">
+                <p class="mb-0">Especially favourable conditions for environmentally friendly cars!</p>
+                <p>Leasing interest rate from 1.49% + 6 month Euribor.</p>
+            </div>
+            <ul class="bold">
+                <li>Leasing interest rate on new cars – from 2.29%+ 6 month Euribor.</li>
+                <li>Option to include casco in one monthly payment.</li>
+                <li>We offer casco insurance as well as motor third party liability insurance.</li>
+                <li>Fill in the application in just a few minutes.</li>
+            </ul>
+            <p class="mt-4 disclaimer">Completing an application does not oblige you to sign an agreement.</p>
+            <div class="mt-4" style="overflow:auto;">
+                <div style="float: left">
+                    <button class="btn btn-next" type="button" id="initForm" onclick="initForm()">Apply</button>
+                </div>
+            </div>
         </div>
     </div>
-    <fieldset id="fieldset" style="display: none;">
-        <legend><span class="h2 ml-4">Credit Card Application</span></legend>
+    <fieldset id="fieldset" style="display: none; min-width: 33%">
+        <h1 class="card-header">Car Lease</h1>
         <form class="bg-white p-4" style="border-radius: 10px" id="regForm">
             <div class="steps">
                 <ol>
                     <li class="step">
                         <div class="steps-number">1</div>
-                        Step one
-                        <div class="steps-sub-title">Full Name</div>
+                        <p>Contact details</p>
                     </li>
                     <li class="step">
                         <div class="steps-number">2</div>
-                        Step two
-                        <div class="steps-sub-title">Credit card</div>
+                        <p>Purpose of financing</p>
                     </li>
                     <li class="step">
                         <div class="steps-number">3</div>
-                        Step three
-                        <div class="steps-sub-title">Phone Number</div>
+                        <p>Vehicle details</p>
                     </li>
                     <li class="step">
                         <div class="steps-number">4</div>
-                        Step four
-                        <div class="steps-sub-title">Maksekohustus</div>
+                        <p>Lease type</p>
                     </li>
                     <li class="step">
                         <div class="steps-number">5</div>
-                        Step five
-                        <div class="steps-sub-title">Additional info</div>
+                        <p>Casco</p>
                     </li>
                 </ol>
-                <div class="steps-responsive">
-                    <div class="steps-responsive-text">Step 2</div>
-                </div>
             </div>
             <div class="tab">
-                <legend><span class="h2">Step one</span></legend>
-                <label>Name:</label>
-                <p><input placeholder="John Doe" oninput="this.className = ''"></p>
+                <label>Representative Name:</label>
+                <input oninput="this.className = ''">
             </div>
             <div class="tab">
-                <legend><span class="h2">Step three</span></legend>
-                <label for="textarea">Additional comments/information:</label>
-                <textarea class="w-100" id="textarea" placeholder="Additional info..." oninput="this.className = 'w-100'"></textarea>
-            </div>
-            <div class="tab">
-                <legend><span class="h2">Step four</span></legend>
+                <label class="mb-2">Choose the purpose of financing:</label>
                 <div class="radio">
-                    <input type="radio" id="options-1" value="1" name="multi-step-radio-example">
-                    <label for="options-1">Option 1</label>
+                    <input type="radio" id="options-1" value="Car" name="purpose-of-financing">
+                    <label for="options-1">Car</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="options-2" value="2" name="multi-step-radio-example">
-                    <label for="options-2">Option 2</label>
+                    <input type="radio" id="options-2" value="Commercial vehicles" name="purpose-of-financing">
+                    <label for="options-2">Commercial vehicles</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="options-3" value="3" name="multi-step-radio-example">
-                    <label for="options-3">Option 3</label>
+                    <input type="radio" id="options-3" value="Machinery and equipment" name="purpose-of-financing">
+                    <label for="options-3">Machinery and equipment</label>
                 </div>
             </div>
             <div class="tab">
-                <legend><span class="h2">Step five</span></legend>
+                <label for="textarea">Vehicle information:
+                    <i data-tooltip="Make, model, year of release, price" data-tooltip-position="top" class="material-icons help-icon">help_outline</i>
+                </label>
+                <textarea class="w-100" id="textarea" oninput="this.className = 'w-100'"></textarea>
+            </div>
+            <div class="tab">
                 <div class="form-group">
-                    <label>Country:</label>
+                    <label>Type of lease:</label>
                     <select class="form-control">
-                        <option selected disabled hidden>Select country</option>
-                        <option value="Subject 1">Estonia</option>
-                        <option value="Subject 2">Latvia</option>
-                        <option value="Subject 3">Lithuania</option>
+                        <option selected value="null">Select type of lease</option>
+                        <option value="Financial lease">Financial lease</option>
+                        <option value="Hire purchase lease">Hire purchase lease</option>
                     </select>
                 </div>
             </div>
             <div class="tab">
-                <legend><span class="h2">Step two</span></legend>
+                <p>I would also like an offer on:</p>
                 <div class="checkbox mb-3">
                     <input id="terms" type="checkbox" oninput="this.className = ''">
-                    <label for="terms">I have read and accept Swedbank's
-                        <a target="_blank" href="https://www.swedbank.ee/private/home/important/gdpr?language=ENG" class="icon-link">
-                            <span class="mr-2">privacy policy</span>
-                            <i class="material-icons" aria-hidden="true">launch</i>
-                        </a>
-                    </label>
+                    <label for="terms">Casco insurance</label>
                 </div>
             </div>
-            <!--TODO: Should be on a separate tab not visible in tabs menu.-->
             <div id="summary" class="tab">
-                <legend><span class="h2">Summary</span></legend>
-                <legend><span class="h4">Question 1:</span></legend>
-                <legend><span id="answer1" class="h5">Answer 1</span></legend>
-                <legend><span class="h4">Question 2:</span></legend>
-                <legend><span id="answer2" class="h5">Answer 2</span></legend>
-                <legend><span class="h4">Question 3:</span></legend>
-                <legend><span id="answer3" class="h5">Answer 3</span></legend>
-                <legend><span class="h4">Question 4:</span></legend>
-                <legend><span id="answer4" class="h5">Answer 4</span></legend>
-                <legend><span class="h4">Question 5:</span></legend>
-                <legend><span id="answer5" class="h5">Answer 5</span></legend>
+                <h2>Summary:</h2>
+                <span class="h4">Question 1:</span>
+                <p id="answer1">Answer 1</p>
+                <span class="h4">Question 2:</span>
+                <p id="answer2">Answer 2</p>
+                <span class="h4">Question 3:</span>
+                <p id="answer3">Answer 3</p>
+                <span class="h4">Question 4:</span>
+                <p id="answer4">Answer 4</p>
+                <span class="h4">Question 5:</span>
+                <p id="answer5">Answer 5</p>
             </div>
-            <div class="mt-2" style="overflow:auto;">
-                <div style="float:right;">
-                    <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous
-                    </button>
-                    <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                </div>
+            <div class="mt-4" style="overflow:auto;">
+                <button style="float: left" class="btn btn-prev" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button style="float: right" class="btn btn-next" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
             </div>
         </form>
-        <div id="form-success" class="bg-white p-4 align-content-center mx-auto mw-100" style="display: none; border-radius: 10px; min-height: 18em; min-width: 30em">
+        <div id="form-success" class="bg-white p-4 align-content-center mx-auto mw-100"
+             style="display: none; border-radius: 10px; min-height: 18em; min-width: 30em">
             <i class="material-icons material-icons">check</i>
             <legend><span class="h2">Application submitted.</span></legend>
             <legend><span class="h5">You can close the tab.</span></legend>
