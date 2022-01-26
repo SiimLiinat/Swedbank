@@ -16,10 +16,6 @@ input {
   border: 1px solid #BCD8DB;
 }
 
-.error {
-  border: red solid 2px;
-}
-
 .tab {
   display: none;
 }
@@ -101,6 +97,10 @@ p.disclaimer {
 
 .btn-prev:hover, .btn-prev:focus {
   color: #89898C;
+}
+
+.btn-next::after {
+  content: "\2009\00bb";
 }
 
 @media (max-width: 600px) {

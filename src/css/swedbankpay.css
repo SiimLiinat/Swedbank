@@ -11612,7 +11612,7 @@ textarea.form-control {
     position: relative
 }
 
-.help-block:after {
+.text-help-block:after {
     left: 0;
     opacity: 1;
     position: absolute;
@@ -18501,7 +18501,7 @@ i[data-tooltip] {
 }
 
 .form-group.has-error input:not(:focus) {
-    background-image: url(/v/7.1.0/designguide/assets/warning.svg);
+    background-image: url('https://design.swedbankpay.com/v/7.1.0/designguide/assets/warning.svg');
     background-position: calc(100% - .5rem) 50%;
     background-repeat: no-repeat;
     background-size: 24px 24px;
@@ -18555,7 +18555,7 @@ i[data-tooltip] {
 }
 
 .input-group.has-error input:not(:focus) {
-    background-image: url(/v/7.1.0/designguide/assets/warning.svg);
+    background-image: url('https://design.swedbankpay.com/v/7.1.0/designguide/assets/warning.svg');
     background-position: calc(100% - .5rem) 50%;
     background-repeat: no-repeat;
     background-size: 24px 24px;

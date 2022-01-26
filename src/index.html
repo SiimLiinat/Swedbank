@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Credit card</title>
-    <!--<link rel="stylesheet" href="https://design.swedbankpay.com/v/7.1.0/styles/swedbankpay.css"/>-->
+    <title>Car leasing - Swedbank</title>
+    <link rel="shortcut icon" href="/icons/favicon.ico" />
     <link rel="stylesheet" href="css/stylesheet.css"/>
     <link rel="stylesheet" href="css/swedbankpay.css"/>
 </head>
@@ -29,7 +29,8 @@
                 <li>We offer casco insurance as well as motor third party liability insurance.</li>
                 <li>Fill in the application in just a few minutes.</li>
             </ul>
-            <p class="mt-4 disclaimer">Completing an application does not oblige you to sign an agreement.</p>
+            <p class="mt-4 disclaimer">Completing an application does not oblige you to sign an agreement.<br>
+                This enables us to find the most suitable solution for you and make you a personal offer.</p>
             <div class="mt-4" style="overflow:auto;">
                 <div style="float: left">
                     <button class="btn btn-next" type="button" id="initForm" onclick="initForm()">Apply</button>
@@ -66,58 +67,93 @@
             </div>
             <div class="tab">
                 <label>Representative Name:</label>
-                <input oninput="this.className = ''">
+                <div class="input-group">
+                    <input class="form-control" onchange="log(event.target)">
+                </div>
+                <div class="help-block text-help-block" data-error="Name cannot be empty and must not contain special symbols"></div>
             </div>
             <div class="tab">
                 <label class="mb-2">Choose the purpose of financing:</label>
                 <div class="radio">
-                    <input type="radio" id="options-1" value="Car" name="purpose-of-financing">
+                    <input onclick="log(event.target)" type="radio" id="options-1" value="Car" name="purpose-of-financing">
                     <label for="options-1">Car</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="options-2" value="Commercial vehicles" name="purpose-of-financing">
+                    <input onclick="log(event.target)" type="radio" id="options-2" value="Commercial vehicles" name="purpose-of-financing">
                     <label for="options-2">Commercial vehicles</label>
                 </div>
                 <div class="radio">
-                    <input type="radio" id="options-3" value="Machinery and equipment" name="purpose-of-financing">
+                    <input onclick="log(event.target)" type="radio" id="options-3" value="Machinery and equipment" name="purpose-of-financing">
                     <label for="options-3">Machinery and equipment</label>
+                </div>
+                <div class="alert alert-danger" id="purpose-alert" style="display: none">
+                    <i class="material-icons alert-icon mr-3" aria-hidden="true">cancel</i>
+                    <p><b>Error.</b> Mandatory information is missing.</p>
                 </div>
             </div>
             <div class="tab">
                 <label for="textarea">Vehicle information:
                     <i data-tooltip="Make, model, year of release, price" data-tooltip-position="top" class="material-icons help-icon">help_outline</i>
                 </label>
-                <textarea class="w-100" id="textarea" oninput="this.className = 'w-100'"></textarea>
+                <div class="input-group">
+                    <textarea class="w-100 form-control" id="textarea" onchange="log(event.target)"></textarea>
+                    <div class="help-block" data-error="Vehicle information cannot be empty"></div>
+                </div>
             </div>
             <div class="tab">
                 <div class="form-group">
                     <label>Type of lease:</label>
-                    <select class="form-control">
+                    <select onchange="log(event.target)" class="form-control">
                         <option selected value="null">Select type of lease</option>
                         <option value="Financial lease">Financial lease</option>
                         <option value="Hire purchase lease">Hire purchase lease</option>
                     </select>
                 </div>
+                <div class="alert alert-danger" id="lease-type-alert" style="display: none">
+                    <i class="material-icons alert-icon mr-3" aria-hidden="true">cancel</i>
+                    <p><b>Error.</b> Mandatory information is missing.</p>
+                </div>
             </div>
             <div class="tab">
-                <p>I would also like an offer on:</p>
+                <p>I would also like an offer on</p>
                 <div class="checkbox mb-3">
-                    <input id="terms" type="checkbox" oninput="this.className = ''">
-                    <label for="terms">Casco insurance</label>
+                    <div class="mb-3">
+                        <input id="casco" type="checkbox">
+                        <label for="casco">Casco insurance</label>
+                    </div>
+                    <input id="third-party" type="checkbox">
+                    <label for="third-party">Motor third-party liability insurance</label>
                 </div>
             </div>
             <div id="summary" class="tab">
                 <h2>Summary:</h2>
-                <span class="h4">Question 1:</span>
-                <p id="answer1">Answer 1</p>
-                <span class="h4">Question 2:</span>
-                <p id="answer2">Answer 2</p>
-                <span class="h4">Question 3:</span>
-                <p id="answer3">Answer 3</p>
-                <span class="h4">Question 4:</span>
-                <p id="answer4">Answer 4</p>
-                <span class="h4">Question 5:</span>
-                <p id="answer5">Answer 5</p>
+                <span class="h4">Representative Name</span>
+                <input disabled class="mb-2" id="answer1"/>
+                <span class="h4">Purpose of financing</span>
+                <div class="radio">
+                    <input disabled type="radio" id="answer2-1" name="purpose">
+                    <label for="answer2-1">Car</label>
+                </div>
+                <div class="radio">
+                    <input disabled type="radio" id="answer2-2" name="purpose">
+                    <label for="answer2-2">Commercial vehicles</label>
+                </div>
+                <div class="radio">
+                    <input disabled checked="checked" type="radio" id="answer2-3" name="purpose">
+                    <label for="answer2-3">Machinery and equipment</label>
+                </div>
+                <span class="h4">Vehicle information</span>
+                <div class="input-group mb-3">
+                    <textarea disabled class="w-100 form-control" id="answer3" onchange="log(event.target)"></textarea>
+                    <div class="help-block" data-error="Vehicle information cannot be empty"></div>
+                </div>
+                <span class="h4">Type of lease</span>
+                <p id="answer4"></p>
+                <span class="h4">I would also like an offer on</span>
+                <div class="checkbox">
+                    <input id="answer5-1" disabled type="checkbox"><label for="answer5-1">Casco insurance</label>
+                    <input id="answer5-2" disabled type="checkbox"><label for="answer5-2">Motor third-party liability insurance</label>
+                </div>
             </div>
             <div class="mt-4" style="overflow:auto;">
                 <button style="float: left" class="btn btn-prev" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>

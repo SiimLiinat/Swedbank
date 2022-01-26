@@ -9,8 +9,15 @@ function showTab() {
     tabs[currentTab].style.display = "block";
     if (tabs[currentTab].id === "summary") {
         for (let i = 0; i < 5; i++) {
-            const answer = document.getElementById("answer" + (i + 1));
-            answer.innerText = answers[i];
+            if (i === 4) {
+                const answer1 = document.getElementById("answer" + (i + 1) + "-1");
+                answer1.checked = answers[i][0];
+                const answer2 = document.getElementById("answer" + (i + 1) + "-2");
+                answer2.checked = answers[i][1];
+            } else {
+                const answer = document.getElementById("answer" + (i + 1));
+                answer.innerText = answers[i];
+            }
         }
     }
     // ... and fix the Previous/Next buttons:
@@ -64,33 +71,38 @@ function validateForm() {
                 input[0].className = "";
             }
         });
+        document.getElementById("purpose-alert").style.display = valid ? "none" : "";
     } else if (input[0].tagName.toLowerCase() === "select") {
         input[0].className.replace(" error", "");
         answer = input[0].value;
         if (answer === "null") {
+            console.log("yes")
             valid = false;
-            input[0].className += " error"
+            const leaseTypeAlert = document.getElementById("lease-type-alert");
+            leaseTypeAlert.style.display = "";
         }
-    }
-    else {
+    } else if (input[0].type === "checkbox") {
+        answer = [input[0].checked, input[1].checked];
+    } else {
         for (let i = 0; i < input.length; i++) {
-            answer = input[i].value;
-            if (input[i].value === "") {
-                input[i].className += " error";
+            answer = input[i].value.trim();
+            if (!log(input[i])) {
                 valid = false;
             }
         }
     }
     let step = document.getElementsByClassName("step")[currentTab];
+    let stepToComplete = step.childNodes[1];
     if (valid) {
         // TODO: Separate function for every class appendment
         if (!step.className.includes("steps-completed")) step.className += " steps-completed";
-        let stepToComplete = step.childNodes[1];
         stepToComplete.className = "material-icons steps-icon";
         stepToComplete.innerHTML = "check";
-        answers[currentTab] = answer.trim();
+        answers[currentTab] = answer;
     } else {
         step.className = step.className.replace(" steps-completed", " steps-selected steps-ongoing");
+        stepToComplete.className = "steps-number";
+        stepToComplete.innerHTML = currentTab + 1;
     }
     return valid;
 }
@@ -124,4 +136,26 @@ function initForm() {
     submissionPage.style.display = "none";
     const fieldSet = document.getElementById("fieldset");
     fieldSet.style.display = "";
+}
+
+function log(target) {
+    if (target.type === "text" || target.type === "textarea") {
+        const format = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        const value = target.value;
+        if ((value.length === 0 || (target.type === "text" && format.test(value)))) {
+            if (!target.parentNode.className.includes("has-error")) target.parentNode.className += " has-error";
+            return false;
+        }
+        else if (target.parentNode.className.includes("has-error")) event.target.parentNode.className = event.target.parentNode.className.replace("has-error", "");
+        return true;
+    } else if (target.type === "select-one") {
+        const leaseTypeAlert = document.getElementById("lease-type-alert");
+        if (target.value === "null") {
+            leaseTypeAlert.style.display = ""
+        } else {
+            leaseTypeAlert.style.display = "none"
+        }
+    } else if (target.type === "radio") {
+        document.getElementById("purpose-alert").style.display = "none";
+    }
 }
