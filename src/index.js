@@ -25,7 +25,7 @@ function showTab() {
         document.getElementById("nextBtn").innerHTML = "Next";
     }
     // ... and run a function that displays the correct step indicator:
-    if (currentTab !== 5) fixStepIndicator(currentTab)
+    fixStepIndicator();
 }
 
 function nextPrev(change) {
@@ -81,30 +81,34 @@ function validateForm() {
             }
         }
     }
+    let step = document.getElementsByClassName("step")[currentTab];
     if (valid) {
-        let step = document.getElementsByClassName("step")[currentTab];
-        step.className += " steps-completed";
+        // TODO: Separate function for every class appendment
+        if (!step.className.includes("steps-completed")) step.className += " steps-completed";
         let stepToComplete = step.childNodes[1];
         stepToComplete.className = "material-icons steps-icon";
         stepToComplete.innerHTML = "check";
         answers[currentTab] = answer.trim();
+    } else {
+        step.className = step.className.replace(" steps-completed", " steps-selected steps-ongoing");
     }
     return valid;
 }
 
-function fixStepIndicator(n) {
+function fixStepIndicator() {
     // This function removes the "active" class of all steps...
-    let x = document.getElementsByClassName("step");
-    for (let i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" steps-ongoing steps-selected", "");
-        for (let node of x[i].childNodes) {
-            if (i !== n) {
-                if (node.className === 'steps-sub-title') node.style.display = "none"
-            }
-        }
+    let step = document.getElementsByClassName("step");
+    for (let i = 0; i < step.length; i++) {
+        step[i].className = step[i].className.replace(" steps-ongoing", "");
+        step[i].className = step[i].className.replace(" steps-selected", "");
     }
     //... and adds the "active" class to the current step:
-    x[n].className += " steps-ongoing steps-selected";
+    if (currentTab !== 5) {
+        if (!step[currentTab].className.includes("steps-completed")) step[currentTab].className += " steps-ongoing steps-selected";
+        else {
+            step[currentTab].className += " steps-selected";
+        }
+    }
 }
 
 function submitForm() {

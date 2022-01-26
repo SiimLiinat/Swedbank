@@ -14566,7 +14566,7 @@ a .small-text {
 
 .steps ol .steps-ongoing:after {
     background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fdc129), color-stop(50%, #ebe7e2));
-    background: linear-gradient(90deg, #fdc129 50%, #ebe7e2 0)
+    background: #fdc129
 }
 
 .steps ol .steps-ongoing:first-child:after, .steps ol .steps-ongoing:last-child:after {
