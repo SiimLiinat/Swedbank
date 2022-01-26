@@ -7,9 +7,9 @@
     <link rel="shortcut icon" href="/icons/favicon.ico" />
     <link rel="stylesheet" href="css/stylesheet.css"/>
     <link rel="stylesheet" href="css/swedbankpay.css"/>
+    <!--<link rel="stylesheet" href="css/clean-swedbankpay.css"/>-->
 </head>
 
-<!--TODO: Error messages-->
 <!--TODO: Fix JS code-->
 <!--TODO: Clear unused CSS-->
 
@@ -31,14 +31,14 @@
             </ul>
             <p class="mt-4 disclaimer">Completing an application does not oblige you to sign an agreement.<br>
                 This enables us to find the most suitable solution for you and make you a personal offer.</p>
-            <div class="mt-4" style="overflow:auto;">
-                <div style="float: left">
+            <div class="mt-4 overflow-auto">
+                <div class="float-left">
                     <button class="btn btn-next" type="button" id="initForm" onclick="initForm()">Apply</button>
                 </div>
             </div>
         </div>
     </div>
-    <fieldset id="fieldset" style="display: none; min-width: 33%">
+    <fieldset class="d-none" id="fieldset" style="min-width: 33%">
         <h1 class="card-header">Car Lease</h1>
         <form class="bg-white p-4" style="border-radius: 10px" id="regForm">
             <div class="steps">
@@ -86,7 +86,7 @@
                     <input onclick="log(event.target)" type="radio" id="options-3" value="Machinery and equipment" name="purpose-of-financing">
                     <label for="options-3">Machinery and equipment</label>
                 </div>
-                <div class="alert alert-danger" id="purpose-alert" style="display: none">
+                <div class="alert alert-danger d-none" id="purpose-alert">
                     <i class="material-icons alert-icon mr-3" aria-hidden="true">cancel</i>
                     <p><b>Error.</b> Mandatory information is missing.</p>
                 </div>
@@ -109,7 +109,7 @@
                         <option value="Hire purchase lease">Hire purchase lease</option>
                     </select>
                 </div>
-                <div class="alert alert-danger" id="lease-type-alert" style="display: none">
+                <div class="alert alert-danger d-none" id="lease-type-alert">
                     <i class="material-icons alert-icon mr-3" aria-hidden="true">cancel</i>
                     <p><b>Error.</b> Mandatory information is missing.</p>
                 </div>
@@ -128,20 +128,9 @@
             <div id="summary" class="tab">
                 <h2>Summary:</h2>
                 <span class="h4">Representative Name</span>
-                <input disabled class="mb-2" id="answer1"/>
+                <p id="answer1"></p>
                 <span class="h4">Purpose of financing</span>
-                <div class="radio">
-                    <input disabled type="radio" id="answer2-1" name="purpose">
-                    <label for="answer2-1">Car</label>
-                </div>
-                <div class="radio">
-                    <input disabled type="radio" id="answer2-2" name="purpose">
-                    <label for="answer2-2">Commercial vehicles</label>
-                </div>
-                <div class="radio">
-                    <input disabled checked="checked" type="radio" id="answer2-3" name="purpose">
-                    <label for="answer2-3">Machinery and equipment</label>
-                </div>
+                <p id="answer2"></p>
                 <span class="h4">Vehicle information</span>
                 <div class="input-group mb-3">
                     <textarea disabled class="w-100 form-control" id="answer3" onchange="log(event.target)"></textarea>
@@ -155,12 +144,12 @@
                     <input id="answer5-2" disabled type="checkbox"><label for="answer5-2">Motor third-party liability insurance</label>
                 </div>
             </div>
-            <div class="mt-4" style="overflow:auto;">
-                <button style="float: left" class="btn btn-prev" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                <button style="float: right" class="btn btn-next" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            <div class="mt-4 overflow-auto">
+                <button class="btn btn-prev float-left" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button style="float: right" class="btn btn-next btn-after-waves" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
             </div>
         </form>
-        <div id="form-success" class="bg-white p-4 align-content-center mx-auto mw-100" style="display: none; border-radius: 10px;">
+        <div id="form-success" class="bg-white p-4 align-content-center mx-auto mw-100 d-none" style="border-radius: 10px;">
             <h2 class="mt-3 mb-5">Application submitted.</h2>
             <p class="h5 mt-5 mb-0">You can close the tab.</p>
             <p class="h5 mt-3">We'll be contacting you soon after reviewing the application!</p>

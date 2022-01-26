@@ -76,7 +76,6 @@ function validateForm() {
         input[0].className.replace(" error", "");
         answer = input[0].value;
         if (answer === "null") {
-            console.log("yes")
             valid = false;
             const leaseTypeAlert = document.getElementById("lease-type-alert");
             leaseTypeAlert.style.display = "";
@@ -125,17 +124,16 @@ function fixStepIndicator() {
 
 function submitForm() {
     const form = document.getElementById("regForm");
-    form.style.display = "none";
+    form.className += " d-none";
     const submissionPage = document.getElementById("form-success");
-    submissionPage.style.display = "";
+    submissionPage.className = submissionPage.className.replace("d-none", "");
     return false;
 }
 
 function initForm() {
     const submissionPage = document.getElementById("intro");
     submissionPage.style.display = "none";
-    const fieldSet = document.getElementById("fieldset");
-    fieldSet.style.display = "";
+    document.getElementById("fieldset").className = "";
 }
 
 function log(target) {
@@ -151,11 +149,12 @@ function log(target) {
     } else if (target.type === "select-one") {
         const leaseTypeAlert = document.getElementById("lease-type-alert");
         if (target.value === "null") {
-            leaseTypeAlert.style.display = ""
-        } else {
-            leaseTypeAlert.style.display = "none"
+            leaseTypeAlert.className = leaseTypeAlert.className.replace("d-none", "");
+        } else if (!leaseTypeAlert.className.includes("d-none")) {
+            leaseTypeAlert.className += " d-none"
         }
     } else if (target.type === "radio") {
-        document.getElementById("purpose-alert").style.display = "none";
+        const purposeAlert = document.getElementById("purpose-alert");
+        purposeAlert.className = purposeAlert.className.replace("d-none", "");
     }
 }
